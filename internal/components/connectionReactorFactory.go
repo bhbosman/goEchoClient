@@ -2,8 +2,8 @@ package components
 
 import (
 	"context"
-	commsImpl "github.com/bhbosman/gocomms/intf"
-	log "github.com/bhbosman/gologging"
+	"github.com/bhbosman/gocomms/intf"
+	"github.com/bhbosman/gologging"
 )
 
 type connectionReactorFactory struct {
@@ -14,8 +14,8 @@ func (self *connectionReactorFactory) Create(
 	name string,
 	cancelCtx context.Context,
 	cancelFunc context.CancelFunc,
-	logger *log.SubSystemLogger,
-	userContext interface{}) commsImpl.IConnectionReactor {
+	logger *gologging.SubSystemLogger,
+	userContext interface{}) intf.IConnectionReactor {
 	result := newConnectionReactor(logger, cancelCtx, cancelFunc, name, userContext)
 	return result
 }
