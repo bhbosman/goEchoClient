@@ -10,6 +10,11 @@ type connectionReactorFactory struct {
 	name string
 }
 
+func (self *connectionReactorFactory) Values(inputValues map[string]interface{}) (map[string]interface{}, error) {
+	result := make(map[string]interface{})
+	return result, nil
+}
+
 func (self *connectionReactorFactory) Create(
 	name string,
 	cancelCtx context.Context,
