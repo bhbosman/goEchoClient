@@ -24,7 +24,6 @@ func RegisterEchoServiceDialer() fx.Option {
 			Target: netDial.NewNetDialApp(
 				"EchoServiceDialer(Empty)",
 				"tcp4://127.0.0.1:3000",
-				impl.TransportFactoryEmptyName,
 				impl.CreateEmptyStack,
 				createServerHandlerFactoryName,
 				netDial.MaxConnectionsSetting(1)),
@@ -34,7 +33,6 @@ func RegisterEchoServiceDialer() fx.Option {
 			Target: netDial.NewNetDialApp(
 				"EchoServiceDialer(Compressed)",
 				"tcp4://127.0.0.1:3001",
-				impl.TransportFactoryCompressedName,
 				impl.CreateCompressedStack,
 				createServerHandlerFactoryName,
 				netDial.MaxConnectionsSetting(1)),
@@ -44,7 +42,6 @@ func RegisterEchoServiceDialer() fx.Option {
 			Target: netDial.NewNetDialApp(
 				"EchoServiceDialer(UnCompressed)",
 				"tcp4://127.0.0.1:3002",
-				impl.TransportFactoryUnCompressedName,
 				impl.CreateUnCompressedStack,
 				createServerHandlerFactoryName,
 				netDial.MaxConnectionsSetting(1)),
