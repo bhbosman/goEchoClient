@@ -9,14 +9,14 @@ import (
 
 func RegisterEchoServiceDialer() fx.Option {
 	const createServerHandlerFactoryName = "EchoClientConnectionReactorFactory"
+	cfr := &connectionReactorFactory{
+		name: createServerHandlerFactoryName,
+	}
 	return fx.Options(
 		fx.Provide(fx.Annotated{
 			Group: impl.ConnectionReactorFactoryConst,
 			Target: func() (commsImpl.IConnectionReactorFactory, error) {
-				return &connectionReactorFactory{
-					name: createServerHandlerFactoryName,
-				}, nil
-
+				return cfr, nil
 			},
 		}),
 		fx.Provide(fx.Annotated{
@@ -26,6 +26,7 @@ func RegisterEchoServiceDialer() fx.Option {
 				"tcp4://127.0.0.1:3000",
 				impl.CreateEmptyStack,
 				createServerHandlerFactoryName,
+				cfr,
 				netDial.MaxConnectionsSetting(1)),
 		}),
 		fx.Provide(fx.Annotated{
@@ -35,6 +36,7 @@ func RegisterEchoServiceDialer() fx.Option {
 				"tcp4://127.0.0.1:3001",
 				impl.CreateCompressedStack,
 				createServerHandlerFactoryName,
+				cfr,
 				netDial.MaxConnectionsSetting(1)),
 		}),
 		fx.Provide(fx.Annotated{
@@ -44,6 +46,7 @@ func RegisterEchoServiceDialer() fx.Option {
 				"tcp4://127.0.0.1:3002",
 				impl.CreateUnCompressedStack,
 				createServerHandlerFactoryName,
+				cfr,
 				netDial.MaxConnectionsSetting(1)),
 		}),
 	)
