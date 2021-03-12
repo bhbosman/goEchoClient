@@ -7,19 +7,19 @@ import (
 	"github.com/bhbosman/gocomms/connectionManager"
 	"github.com/bhbosman/gocomms/connectionManager/endpoints"
 	"github.com/bhbosman/gocomms/connectionManager/view"
-	"github.com/bhbosman/gocomms/impl"
 	log2 "github.com/bhbosman/gologging"
+	"github.com/cskr/pubsub"
 	"go.uber.org/fx"
 	"log"
 	"os"
 )
 
 func main() {
+	pubSub := pubsub.New(32)
 	app := fx.New(
 		log2.ProvideLogFactory(log.New(os.Stderr, "EchoClient: ", log.LstdFlags), nil),
 		connectionManager.RegisterDefaultConnectionManager(),
-		impl.RegisterAllConnectionRelatedServices(),
-		app2.RegisterRootContext(),
+		app2.RegisterRootContext(pubSub),
 		echoClient.RegisterEchoServiceDialer(),
 		endpoints.RegisterConnectionManagerEndpoint(),
 		view.RegisterConnectionsHtmlTemplate(),
