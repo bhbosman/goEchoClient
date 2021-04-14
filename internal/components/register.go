@@ -2,7 +2,6 @@ package components
 
 import (
 	"github.com/bhbosman/gocomms/impl"
-	commsImpl "github.com/bhbosman/gocomms/intf"
 	"github.com/bhbosman/gocomms/netDial"
 	"go.uber.org/fx"
 )
@@ -13,19 +12,19 @@ func RegisterEchoServiceDialer() fx.Option {
 		name: createServerHandlerFactoryName,
 	}
 	return fx.Options(
-		fx.Provide(fx.Annotated{
-			Group: impl.ConnectionReactorFactoryConst,
-			Target: func() (commsImpl.IConnectionReactorFactory, error) {
-				return cfr, nil
-			},
-		}),
+		//fx.Provide(fx.Annotated{
+		//	Group: impl.ConnectionReactorFactoryConst,
+		//	Target: func() (commsImpl.IConnectionReactorFactory, error) {
+		//		return cfr, nil
+		//	},
+		//}),
 		fx.Provide(fx.Annotated{
 			Group: "Apps",
 			Target: netDial.NewNetDialApp(
 				"EchoServiceDialer(Empty)",
 				"tcp4://127.0.0.1:3000",
 				impl.CreateEmptyStack,
-				createServerHandlerFactoryName,
+				//createServerHandlerFactoryName,
 				cfr,
 				netDial.MaxConnectionsSetting(1)),
 		}),
@@ -35,7 +34,7 @@ func RegisterEchoServiceDialer() fx.Option {
 				"EchoServiceDialer(Compressed)",
 				"tcp4://127.0.0.1:3001",
 				impl.CreateCompressedStack,
-				createServerHandlerFactoryName,
+				//createServerHandlerFactoryName,
 				cfr,
 				netDial.MaxConnectionsSetting(1)),
 		}),
@@ -45,7 +44,7 @@ func RegisterEchoServiceDialer() fx.Option {
 				"EchoServiceDialer(UnCompressed)",
 				"tcp4://127.0.0.1:3002",
 				impl.CreateUnCompressedStack,
-				createServerHandlerFactoryName,
+				//createServerHandlerFactoryName,
 				cfr,
 				netDial.MaxConnectionsSetting(1)),
 		}),
