@@ -3,8 +3,8 @@ module github.com/bhbosman/goEchoClient
 go 1.15
 
 require (
-	github.com/bhbosman/gocommon v0.0.0-20210414135919-fd7afceec0b0
 	github.com/bhbosman/gocomms v0.0.0-20210108094235-212b4e8c628c
+	github.com/bhbosman/gocommon v0.0.0-20210414135919-fd7afceec0b0
 	github.com/bhbosman/gologging v0.0.0-20200921180328-d29fc55c00bc
 	github.com/bhbosman/gomessageblock v0.0.0-20210414135653-cd754835d03b
 	github.com/bhbosman/goprotoextra v0.0.2-0.20210414124526-a342e2a9e82f
@@ -17,7 +17,7 @@ require (
 replace (
 	github.com/bhbosman/goMessages => ../goMessages
 	github.com/bhbosman/gocommon => ../gocommon
-	github.com/bhbosman/gocomms => ../gocomms
+	//github.com/bhbosman/gocomms => ../gocomms
 	github.com/bhbosman/gologging => ../gologging
 	github.com/bhbosman/gomessageblock => ../gomessageblock
 	github.com/reactivex/rxgo/v2 => ../../reactivex/rxgo
