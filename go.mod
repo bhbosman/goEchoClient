@@ -3,7 +3,7 @@ module github.com/bhbosman/goEchoClient
 go 1.15
 
 require (
-	github.com/bhbosman/gocomms v0.0.0-20210108094235-212b4e8c628c
+	github.com/bhbosman/gocomms v0.0.0-20210414144344-fb75f75793be
 	github.com/bhbosman/gocommon v0.0.0-20210414135919-fd7afceec0b0
 	github.com/bhbosman/gologging v0.0.0-20200921180328-d29fc55c00bc
 	github.com/bhbosman/gomessageblock v0.0.0-20210414135653-cd754835d03b
